@@ -33,7 +33,7 @@ const Layout: React.FC = () => {
 
       <Routes>
         <Route path='/' element={<Reception />} />
-        <Route path='/floor/:id' element={<PrivateRoute component={<Floor />} />} />
+        <Route path='/floor/:index' element={<PrivateRoute component={<Floor />} />} />
         {<Route path='/forbidden' element={<Forbidden />} />}
         <Route path='/forbidden' element={<Forbidden />} />
       </Routes>

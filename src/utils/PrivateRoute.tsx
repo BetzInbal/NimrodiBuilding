@@ -16,6 +16,8 @@ const PrivateRoute = ({ component}:IPrivateRoute) =>  {
       ).floorAccess;
         if (floorAccess[parseInt(index || "0")] )
      { 
+        console.log(component?.toString);
+        
         return(
         <div>
             {component}
