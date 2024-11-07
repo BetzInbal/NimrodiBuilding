@@ -18,7 +18,7 @@ function App() {
 
       <Routes>
 
-        <Route path='floor/:id' element={<Floor /> } />
+        <Route path='floor/:id' element={<PrivateRoute component={<Floor />} />} />
         {<Route path='/' element={<Reception />} />}
         <Route path='/' element={<Reception />} />
       </Routes>
