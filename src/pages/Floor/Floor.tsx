@@ -7,13 +7,13 @@ import './Floor.css';
 const Floor: React.FC = () => {
   const { index } = useParams<{ index: string }>();
   const floorIndex = parseInt(index || "0");
-  const { getFloorByIndex, getListOfActivities } = useBuildingData();
+  const { buildingData, getListOfActivities } = useBuildingData();
   const navigate = useNavigate();
 
-  const thisFloor = getFloorByIndex(floorIndex);
+  const thisFloor = buildingData[floorIndex];
   const currentRole = useSelector((state: { role: string }) => state.role);
   const thisFloorActivity: string = thisFloor?.activity || "";
-  const activities = getListOfActivities();
+  const activities = buildingData.map((f)=>f.activity);
 
   const handleClick = () => {
     const isVerified = useIsVerified({ activity: thisFloorActivity, role: currentRole, activities });

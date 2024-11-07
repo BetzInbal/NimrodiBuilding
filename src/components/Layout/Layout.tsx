@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useBuildingData from "../../utils/BuildingDataProvider";
@@ -15,30 +15,29 @@ const Layout: React.FC = () => {
     (state: RootState) => state.floor
   ).floorAccess;
 
-   //const { getFloorByIndex } = useBuildingData();
+  const {  buildingData } = useBuildingData();
 
   return (
     <div className="layout-page">
       <nav className="navbar">
         <h1>מגדל נמרודי</h1>
         <div className="nav-links">
-            <Link to="/">Home</Link>          
+          <Link to="/">Home</Link>
           {floorAccess.map((floor: boolean, index: number) => (
-            <Link key={index} to={`/floor/${index}`}> {index +1}
-              {//getFloorByIndex(index)?.purpose || `Floor ${index + 1}`
-              }
+            <Link key={index} to={`/floor/${index}`}> {index + 1}
+              {buildingData[index]?.purpose || `Floor ${index + 1}`}
             </Link>
           ))}
         </div>
       </nav>
+
       <Routes>
-        
         <Route path='/' element={<Reception />} />
+        <Route path='/floor/:id' element={<PrivateRoute component={<Floor />} />} />
         {<Route path='/forbidden' element={<Forbidden />} />}
         <Route path='/forbidden' element={<Forbidden />} />
       </Routes>
 
-        
 
       <footer className="layout-footer">
         <h2>About מגדל נמרודי</h2>

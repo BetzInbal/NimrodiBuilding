@@ -14,7 +14,7 @@ const Reception: React.FC = () => {
   console.log(floorAccess);
   
   const currentRole = useSelector((state: { role: string }) => state.role);
-  const { getFloorByIndex } = useBuildingData();
+  const { buildingData } = useBuildingData();
   const dispatch = useDispatch();
 
   const handleChangeAccess = (index: number) => {
@@ -46,7 +46,7 @@ const Reception: React.FC = () => {
           >
             <h5>{floor ? "Access Granted" : "No Access"}</h5>
             <span>{ `Floor ${index + 1}`}</span>
-            {//<span>{getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}</span>
+            {<span>{buildingData[index]?.purpose || `Floor ${index + 1}`}</span>
             }
           </div>
         ))}
