@@ -5,11 +5,14 @@ import { setRole } from "../../store/rolereducer";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import optionalroles from "../../data/roles.json";
 import "./Reception.css";
+import { RootState } from "../../store/store";
 
 const Reception: React.FC = () => {
   const floorAccess = useSelector(
-    (state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess
+    (state: RootState) => state.floor.floorAccess
   );
+  console.log(floorAccess);
+  
   const currentRole = useSelector((state: { role: string }) => state.role);
   const { getFloorByIndex } = useBuildingData();
   const dispatch = useDispatch();
@@ -42,7 +45,9 @@ const Reception: React.FC = () => {
             onKeyPress={(e) => e.key === "Enter" && handleChangeAccess(index)}
           >
             <h5>{floor ? "Access Granted" : "No Access"}</h5>
-            <span>{getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}</span>
+            <span>{ `Floor ${index + 1}`}</span>
+            {//<span>{getFloorByIndex(index)?.purpose || `Floor ${index + 1}`}</span>
+            }
           </div>
         ))}
       </section>

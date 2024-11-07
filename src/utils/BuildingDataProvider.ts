@@ -7,31 +7,37 @@ interface Floor {
   soldiers: number;
   purpose: string;
   description: string;
-  activity:string
+  activity: string
 }
 
 const useBuildingData = () => {
-
   const [buildingData, setBuildingData] = useState<Floor[]>([]);
-  setBuildingData(fsJson) 
-  
   const [floorData, setFloorData] = useState<Floor>();
-
-  const getFloorByIndex = (floorIndex:number): Floor |undefined =>
-  {
+  const [getFloorByIndex, setgetFloorByIndex] = useState<(floorIndex: number) => Floor >((floorIndex: number): Floor  => {
     setFloorData(buildingData[floorIndex])
-    return floorData
-  }
-
-  const getListOfActivities = ():string[]=>{
+    return floorData ||   {
+      name: "string",
+      soldiers: 1,
+      purpose: "string",
+      description: "string",
+      activity: "string"
+    }
+  });
+  const [getListOfActivities, setgetListOfActivities] = useState<() => string[]>((): string[] => {
     return buildingData.map((f) => f.activity)
+  });
+
+  useEffect(() => {
+    setBuildingData(fsJson)
   }
+    , [])
 
   return {
     buildingData,
     getFloorByIndex,
     getListOfActivities
-  };
+  }
+
 };
 
 export default useBuildingData;

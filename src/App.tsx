@@ -4,6 +4,7 @@ import Floor from "./pages/Floor/Floor";
 import PrivateRoute from "./utils/PrivateRoute";
 import Layout from "./components/Layout/Layout";
 import Forbidden from "./pages/Forbidden/Forbidden";
+import Tester from "./pages/Tester";
 
 // const router = createBrowserRouter([
 //   <Route path="/" element={<Reception/>}/>
@@ -16,12 +17,7 @@ function App() {
       <Layout />
 
 
-      <Routes>
 
-        <Route path='floor/:id' element={<PrivateRoute component={<Floor />} />} />
-        {<Route path='/' element={<Reception />} />}
-        <Route path='/' element={<Reception />} />
-      </Routes>
 
     </div>
   );

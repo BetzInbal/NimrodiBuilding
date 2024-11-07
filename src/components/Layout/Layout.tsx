@@ -7,6 +7,8 @@ import { RootState } from "../../store/store";
 import PrivateRoute from "../../utils/PrivateRoute";
 import Floor from "../../pages/Floor/Floor";
 import Reception from "../../pages/Reception/Reception";
+import Forbidden from "../../pages/Forbidden/Forbidden";
+import Tester from "../../pages/Tester";
 
 const Layout: React.FC = () => {
   const floorAccess = useSelector(
@@ -29,6 +31,12 @@ const Layout: React.FC = () => {
           ))}
         </div>
       </nav>
+      <Routes>
+        
+        <Route path='/' element={<Reception />} />
+        {<Route path='/forbidden' element={<Forbidden />} />}
+        <Route path='/forbidden' element={<Forbidden />} />
+      </Routes>
 
         
 
